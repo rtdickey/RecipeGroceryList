@@ -1,0 +1,10 @@
+{
+  "name": "RecipeGroceryList",
+  "description": "Update later.",
+  "dependencies": {
+    "express": "4.15.0",
+    "pg": "^6.1.5",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.4"
+  }
+}
