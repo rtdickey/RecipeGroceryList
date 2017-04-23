@@ -1,4 +1,0 @@
-.git/
-.gitignore.txt
-
-node_modules/
