@@ -1,13 +1,14 @@
 var config = require('../config.js');
 var app = config.app;
-var User = require('../models/user.js');
+var RecipeIngredients = require('../models/recipeingredients.js');
+var Recipes = require('../models/recipes.js');
 
 app.get('/', function (req, res) {
-  	User.findOne({
+  	RecipeIngredients.findOne({
 	  	where: {
 	  		id: 1
 	  	}
-	}).then(function(user) {
-		res.send(user.firstName + ' ' + user.lastName);
+	}).then(function(ri) {
+		res.send('How much: ' + ri.quantity + ' ' + ri.measurement);
 	})
 })
