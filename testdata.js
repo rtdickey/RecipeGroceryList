@@ -35,7 +35,7 @@ var createData = function() {
 
 	Recipes.belongsToMany(Ingredients, { through: RecipeIngredients , foreignKey: 'recipesId', targetKey: 'recipesId'});
 	Ingredients.belongsToMany(Recipes, { through: RecipeIngredients, foreignKey: 'ingredientsId', targetKey: 'ingredientsId' });
-	
+
 	RecipeIngredients.sync({force: true}).then(function () {
 		return RecipeIngredients.create({
 			quantity: '1/4',
