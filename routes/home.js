@@ -8,9 +8,11 @@ app.get('/', function (req, res) {
 	  	where: {
 	  		id: 1
 	  	}
-	}).then(function(ri) {
-		ri.getIngredients().then(function (ingredients) {
-			res.send(ingredients);
+	}).then(function(recipe) {
+		recipe.getIngredients().then(function (ingredients) {
+			var ingredientName = ingredients[0].dataValues.name;
+
+			res.render('../views/index.jade', { 'ingredientName': ingredientName });
 		});
 	});
 })
