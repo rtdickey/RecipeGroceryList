@@ -15,15 +15,20 @@ var createData = function() {
 	Recipes.sync({force: true}).then(function () {
 		return Recipes.create(
 			{
-				name: 'Baked Chicken', 
-				instructions: 'Place Instructions Here.'
+				name: 'Baked Chicken Breasts', 
+				instructions: '1. Preheat oven to 450 degrees. Pound chicken breasts lightly so they are of even thickness.<br />' +
+				'2. Pour olive oil in a 13\" x 9\" baking dish. Lightly dredge the chicken through to coat it, then place chicken breasts side by side in the dish.<br />' +
+				'3. In a small bowl, whisk together salt, pepper, garlic powder, onion powder and chili powder. Sprinkle the seasoning mixture over both sides of the chicken and rub it in with your hands. Place chicken breasts side by side, making sure there is no overlap.<br />' +
+				'4. Bake in a preheated oven for 15-20 minutes, until juices are clear or a meat thermometer reads 160-170 degrees. *Note - depending on the size of your chicken breasts, it could take longer. Mine were pounded to less than an inch thick.<br />' +
+				'5. Cover with foil and allow to rest for 5-10 minutes while the juices settle before slicing.<br />' + 
+				'6. Serve hot.'
 			}
 		);
 	});
 
 	Ingredients.sync({force: true}).then(function () {
 		return Ingredients.bulkCreate([
-			{ name: 'Chicken' },
+			{ name: 'Chicken Breasts' },
 			{ name: 'Garlic Powder' },
 			{ name: 'Onion Powder' },
 			{ name: 'Chili Powder' },
@@ -37,12 +42,57 @@ var createData = function() {
 	Ingredients.belongsToMany(Recipes, { through: RecipeIngredients, foreignKey: 'ingredientsId', targetKey: 'ingredientsId' });
 
 	RecipeIngredients.sync({force: true}).then(function () {
-		return RecipeIngredients.create({
+		return RecipeIngredients.bulkCreate([
+			{
+				quantity: '4',
+				measurement: '',
+				ingredientsId: 1,
+				recipesId: 1
+			},
+			{
+				quantity: '1/2',
+				measurement: 'tsp.',
+				ingredientsId: 2,
+				recipesId: 1
+			},
+			{
+				quantity: '1/2',
+				measurement: 'tsp.',
+				ingredientsId: 3,
+				recipesId: 1
+			},
+			{
+				quantity: '1/2',
+				measurement: 'tsp.',
+				ingredientsId: 4,
+				recipesId: 1
+			},
+			{
+				quantity: '1/2',
+				measurement: 'tsp.',
+				ingredientsId: 5,
+				recipesId: 1
+			},
+			{
+				quantity: '1',
+				measurement: 'tsp.',
+				ingredientsId: 6,
+				recipesId: 1
+			},
+			{
+				quantity: '2',
+				measurement: 'tbsp.',
+				ingredientsId: 7,
+				recipesId: 1
+			}
+		]);
+
+		/*return RecipeIngredients.create({
 			quantity: '1/4',
 			measurement: 'tsp.',
 			ingredientsId: 3,
 			recipesId: 1
-		});
+		});*/
 	});
 }
 

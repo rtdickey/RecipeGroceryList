@@ -2,4 +2,12 @@ extends layout
 
 block content
   h1 Recipe Grocery List
-  p Welcome to Recipe Grocery List. #{ingredientName}.
+  h3 1. #{recipe.name}
+  h4 Ingredients
+  ol
+    each val, key in ingredient
+      li #{val.recipeingredients.quantity} #{val.recipeingredients.measurement} #{val.dataValues.name}
+  h4 Instructions
+  ul
+    li
+      p !{recipe.instructions}

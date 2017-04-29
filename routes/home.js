@@ -10,9 +10,9 @@ app.get('/', function (req, res) {
 	  	}
 	}).then(function(recipe) {
 		recipe.getIngredients().then(function (ingredients) {
-			var ingredientName = ingredients[0].dataValues.name;
-
-			res.render('../views/index.jade', { 'ingredientName': ingredientName });
+			var ingredient = ingredients;
+			console.log(ingredients);
+			res.render('../views/index.jade', { 'recipe': recipe, 'ingredient': ingredient });
 		});
 	});
 })

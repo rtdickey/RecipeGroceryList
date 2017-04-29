@@ -7,7 +7,7 @@ var Recipes = sequelize.define('recipes', {
 		type: Sequelize.STRING
 	},
 	instructions: {
-		type: Sequelize.STRING
+		type: Sequelize.TEXT
 	}
 }, {
 	freezeTableName: true
