@@ -2,12 +2,9 @@ extends layout
 
 block content
   h1 Recipe Grocery List
-  h3 1. #{recipe.name}
-  h4 Ingredients
-  ol
-    each val, key in ingredient
-      li #{val.recipeingredients.quantity} #{val.recipeingredients.measurement} #{val.dataValues.name}
-  h4 Instructions
-  ul
-    li
-      p !{recipe.instructions}
+
+  each val, key in recipes
+    h2 #{val.name}
+    h3 Instructions
+    ul
+      li !{val.instructions}

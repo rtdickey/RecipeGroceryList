@@ -13,7 +13,7 @@ var createData = function() {
 	});*/
 
 	Recipes.sync({force: true}).then(function () {
-		return Recipes.create(
+		return Recipes.bulkCreate([
 			{
 				name: 'Baked Chicken Breasts', 
 				instructions: '1. Preheat oven to 450 degrees. Pound chicken breasts lightly so they are of even thickness.<br />' +
@@ -22,8 +22,17 @@ var createData = function() {
 				'4. Bake in a preheated oven for 15-20 minutes, until juices are clear or a meat thermometer reads 160-170 degrees. *Note - depending on the size of your chicken breasts, it could take longer. Mine were pounded to less than an inch thick.<br />' +
 				'5. Cover with foil and allow to rest for 5-10 minutes while the juices settle before slicing.<br />' + 
 				'6. Serve hot.'
+			},
+			{
+				name: 'Sweet Tea', 
+				instructions: '1. Put water in tea maker.<br />' +
+				'2. Add 4 tea bags (or 2 family size tea bags).<br />' +
+				'3. Add sugar to drink container.<br />' +
+				'4. Brew.<br />' +
+				'5. Stir and add water to fill up container.<br />' + 
+				'6. Enjoy over ice!'
 			}
-		);
+		]);
 	});
 
 	Ingredients.sync({force: true}).then(function () {
@@ -34,7 +43,9 @@ var createData = function() {
 			{ name: 'Chili Powder' },
 			{ name: 'Black Pepper' },
 			{ name: 'Kosher Salt' },
-			{ name: 'Extra Virgin Olive Oil' }
+			{ name: 'Extra Virgin Olive Oil' },
+			{ name: 'Lipton Tea' },
+			{ name: 'Sugar' }
 		]);
 	});
 
@@ -84,6 +95,18 @@ var createData = function() {
 				measurement: 'tbsp.',
 				ingredientsId: 7,
 				recipesId: 1
+			},
+			{
+				quantity: '4',
+				measurement: 'bags',
+				ingredientsId: 8,
+				recipesId: 2
+			},
+			{
+				quantity: '3/4',
+				measurement: 'cups',
+				ingredientsId: 9,
+				recipesId: 2
 			}
 		]);
 

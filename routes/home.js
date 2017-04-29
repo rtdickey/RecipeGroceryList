@@ -4,15 +4,18 @@ var Ingredients = require('../models/ingredients.js');
 var Recipes = require('../models/recipes.js');
 
 app.get('/', function (req, res) {
-  	Recipes.findOne({
-	  	where: {
-	  		id: 1
-	  	}
-	}).then(function(recipe) {
-		recipe.getIngredients().then(function (ingredients) {
-			var ingredient = ingredients;
-			console.log(ingredients);
-			res.render('../views/index.jade', { 'recipe': recipe, 'ingredient': ingredient });
-		});
+  	Recipes.findAll().then(function(recipes) {
+		var recipeList = [];
+		var ingredientList = [];
+		
+		for (var i = 0; i < recipes.length; i++) {
+			recipeList.push(recipes[i]);
+			
+			/*recipes[i].getIngredients().then(function (ingredients) {
+				ingredientList.push(ingredients);
+			});*/
+		}
+
+		res.render('../views/index.jade', { 'recipes': recipeList });
 	});
 })
