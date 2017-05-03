@@ -8,3 +8,7 @@ block content
     h3 Instructions
     ul
       li !{val.instructions}
+    ol
+      - for(var i = 0; i < ingredients[key].length; i++) {
+          li #{ingredients[key][i].recipeingredients.quantity} #{ingredients[key][i].recipeingredients.measurement} #{ingredients[key][i].dataValues.name}
+      - }

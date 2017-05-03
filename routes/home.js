@@ -5,17 +5,27 @@ var Recipes = require('../models/recipes.js');
 
 app.get('/', function (req, res) {
   	Recipes.findAll().then(function(recipes) {
-		var recipeList = [];
-		var ingredientList = [];
-		
-		for (var i = 0; i < recipes.length; i++) {
-			recipeList.push(recipes[i]);
-			
-			/*recipes[i].getIngredients().then(function (ingredients) {
-				ingredientList.push(ingredients);
-			});*/
+		var numOfRecipes = recipes.length;
+		var recipeList = new Array(numOfRecipes);
+		var ingredientList = new Array(numOfRecipes);
+		var count = 0;
+
+		var finalCallback = function() {
+			res.render('../views/index.jade', { 'recipes': recipeList, 'ingredients': ingredientList });
 		}
 
-		res.render('../views/index.jade', { 'recipes': recipeList });
+		var onSuccess = function(index, ingredients) {
+			count++;
+			ingredientList[index] = ingredients;
+			if(count === recipes.length) {
+				finalCallback();
+			}
+		}
+
+		for (var i = 0; i < numOfRecipes; i++) {
+			recipeList[i] = recipes[i];
+			recipes[i].getIngredients().then(onSuccess.bind(null, i));
+		}
+		
 	});
 })
